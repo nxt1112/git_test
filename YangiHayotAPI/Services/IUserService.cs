@@ -11,8 +11,9 @@ namespace YangiHayotAPI.Services
 
         public User? GetById(int id);
 
-        public string Update(UserUpdateRequest update);
+        public string Update(int id, string FirstName, string LastName, string PhoneNumber, string Email, string Password, int RoleId);
 
         public void Delete(int id);
+        
     }
 }

@@ -28,7 +28,8 @@ namespace YangiHayotAPI.Controllers
             {
                 return UnprocessableEntity();
             }
-            int id = this.userService.Create(newUser.FirstName, newUser.LastName, newUser.PhoneNumber, newUser.Email, newUser.Password,newUser.RoleId);
+            int id = this.userService.Create(newUser);
+           
             return Ok(id);
         }
 
@@ -54,14 +55,14 @@ namespace YangiHayotAPI.Controllers
 
         [HttpPut]
         [Route("{id}")]
-        public IActionResult Update(UserUpdateRequest update)
+        public IActionResult Update(int id, string FirstName, string LastName, string PhoneNumber, string Email, string Password, int RoleId)
         {
             var user = this.userService.GetById(id);
             if (user is null)
             {
                 return NotFound("Not Found!");
             }
-            this.userService.Update(update.Id, update.FirstName, update.LastName, update.PhoneNumber, update.Email, update.Password, update.RoleId);
+            this.userService.Update(id, FirstName, LastName, PhoneNumber, Email, Password, RoleId);
             return Ok(user);
         }
 

@@ -45,22 +45,22 @@ namespace YangiHayotAPI.Services
             return (user);
         } 
 
-        public string Update(UserUpdateRequest update)
+        public string Update(int id, string FirstName, string LastName, string PhoneNumber, string Email, string Password, int RoleId)
         {
-            PasswordHelper.HashPassword(update.Password, out byte[] passwordSalt, out byte[] passwordHash);
-
-            var user = _dataContext.Users.FirstOrDefault(u => u.Id == update.Id);
+            
+            var user = _dataContext.Users.FirstOrDefault(u => u.Id == id);
             if (user == null)
             {
                 return "Not Found";
             }
-            update.FirstName = user.FirstName;  
-            update.LastName = user.LastName;
-            update.PhoneNumber = user.PhoneNumber;
-            update.Email = user.Email;
-            user.PasswordSalt = passwordSalt;
-            user.PasswordHash = passwordHash;
-            update.RoleId = user.RoleId;
+            user.Id = id;   
+            user.FirstName = FirstName; 
+            user.LastName = LastName;
+            user.PhoneNumber = PhoneNumber;
+            user.Email = Email;
+            //user.Password = Password;
+            user.RoleId = RoleId;
+            
 
             _dataContext.SaveChanges();
             return "Updated!";
