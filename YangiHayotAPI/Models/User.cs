@@ -11,7 +11,8 @@ namespace YangiHayotAPI.Models
         public string LastName { get; set; } = string.Empty;
         public string PhoneNumber { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
-        public string Password { get; set; } = string.Empty;
+        public byte[] PasswordHash { get; set; } = new byte[32]; 
+        public byte[] PasswordSalt { get; set; } = new byte[32];
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public int RoleId   { get; set; }
         

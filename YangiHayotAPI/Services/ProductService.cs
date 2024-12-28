@@ -28,8 +28,8 @@ namespace YangiHayotAPI.Services
         {
             Product product = new Product();    
             product.Name = Name;    
-            product.Price = Price;  
-            product.Size = Convert.ToString(Size);    
+            product.Price = Price;
+            product.Size = Convert.ToString(Size);
             product.Photo = Photo;  
             product.Quantity = Quantity;
             _dataContext.Products.Add(product); 

@@ -1,4 +1,6 @@
-﻿using YangiHayotAPI.Data;
+﻿using Microsoft.AspNetCore.Identity;
+using YangiHayotAPI.Data;
+using YangiHayotAPI.DTOs;
 using YangiHayotAPI.Models;
 
 namespace YangiHayotAPI.Services
@@ -11,18 +13,22 @@ namespace YangiHayotAPI.Services
             _dataContext = dataContext;
         }
 
-        public int Create (string FirstName, string LastName, string PhoneNumber, string Email, string Password, int RoleId)
+        public int Create (UserCreateRequest request)
         {
-            User user = new User()
+            PasswordHelper.HashPassword(request.Password, out byte[] passwordSalt, out byte[] passwordHash);
+
+            var user = new User()
             {
-                FirstName = FirstName,
-                LastName = LastName,
-                PhoneNumber = PhoneNumber,
-                Email = Email,
-                Password = Password,
-                RoleId = RoleId,
-                
-            }; 
+                FirstName = request.FirstName,
+                LastName = request.LastName,
+                PhoneNumber = request.PhoneNumber,
+                Email = request.Email,
+                PasswordHash = passwordHash,
+                PasswordSalt = passwordSalt,
+                RoleId = request.RoleId,
+
+            };
+            
             _dataContext.Users.Add(user);   
             _dataContext.SaveChanges();
             return user.Id;
@@ -39,19 +45,23 @@ namespace YangiHayotAPI.Services
             return (user);
         } 
 
-        public string Update(int Id, string FirstName, string LastName, string PhoneNumber, string Email, string Password, int RoleId)
+        public string Update(UserUpdateRequest update)
         {
-            var user = _dataContext.Users.FirstOrDefault(u => u.Id == Id);
+            PasswordHelper.HashPassword(update.Password, out byte[] passwordSalt, out byte[] passwordHash);
+
+            var user = _dataContext.Users.FirstOrDefault(u => u.Id == update.Id);
             if (user == null)
             {
                 return "Not Found";
             }
-            user.FirstName = FirstName; 
-            user.LastName = LastName;   
-            user.PhoneNumber = PhoneNumber; 
-            user.Email = Email; 
-            user.Password = Password;   
-            user.RoleId = RoleId;
+            update.FirstName = user.FirstName;  
+            update.LastName = user.LastName;
+            update.PhoneNumber = user.PhoneNumber;
+            update.Email = user.Email;
+            user.PasswordSalt = passwordSalt;
+            user.PasswordHash = passwordHash;
+            update.RoleId = user.RoleId;
+
             _dataContext.SaveChanges();
             return "Updated!";
         }

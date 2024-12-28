@@ -54,14 +54,14 @@ namespace YangiHayotAPI.Controllers
 
         [HttpPut]
         [Route("{id}")]
-        public IActionResult Update(int id, string FirstName, string LastName, string PhoneNumber, string Email, string Password, int RoleId)
+        public IActionResult Update(UserUpdateRequest update)
         {
             var user = this.userService.GetById(id);
             if (user is null)
             {
                 return NotFound("Not Found!");
             }
-            this.userService.Update(id, FirstName, LastName, PhoneNumber, Email, Password, RoleId);
+            this.userService.Update(update.Id, update.FirstName, update.LastName, update.PhoneNumber, update.Email, update.Password, update.RoleId);
             return Ok(user);
         }
 
