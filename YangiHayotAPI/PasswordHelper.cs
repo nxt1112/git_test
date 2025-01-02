@@ -15,8 +15,16 @@ namespace YangiHayotAPI
                 passwordSalt = hmac.Key;
                 passwordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
             }
-
-
-        } 
+        }
+        
+        public static bool CheckPassword (string password, byte[] passwordSalt, byte[] passwordHash)
+        {
+            byte[] newHashedPassword;
+            using (HMACSHA3_512 hmac = new HMACSHA3_512(passwordSalt))
+            {
+                newHashedPassword = hmac.ComputeHash(Encoding.UTF8.GetBytes(password)); 
+                return passwordHash.SequenceEqual(newHashedPassword);
+            }
+        }
     }
 }

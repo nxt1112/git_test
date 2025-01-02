@@ -1,3 +1,6 @@
+using Microsoft.AspNetCore.Mvc;
+
+
 namespace YangiHayotAPI
 {
     public class WeatherForecast
@@ -9,5 +12,6 @@ namespace YangiHayotAPI
         public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
 
         public string? Summary { get; set; }
+   
     }
 }
