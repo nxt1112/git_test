@@ -29,5 +29,33 @@ namespace YangiHayotAPI.Controllers
             })
             .ToArray();
         }
+
+        [HttpGet]
+        [Route("test")]
+        public IActionResult Test()
+        {
+            //Console.WriteLine(Directory.Exists("wwwroot"));
+
+
+
+            //1
+            //FileInfo fileInfo = new FileInfo("test-file.txt");
+            //fileInfo.Create();
+
+            //2
+            //System.IO.File.Create("document.txt");
+
+
+            //3
+            using (StreamWriter sw = new StreamWriter("boshqa-fayl.txt"))
+            {
+                sw.WriteLine("hello");
+
+            }
+                return Ok("done");
+        }
+
+
+
     }
 }

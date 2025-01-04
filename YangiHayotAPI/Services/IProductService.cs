@@ -5,7 +5,7 @@ namespace YangiHayotAPI.Services
 {
     public interface IProductService
     {
-        public int Create(string Name, decimal Price, ProductSizeEnum Size, string Photo, double Quantity);
+        public int Create(string Name, decimal Price, ProductSizeEnum Size, IFormFile Photo, double Quantity);
 
         public Product? GetByName(string Name);
 
@@ -13,9 +13,8 @@ namespace YangiHayotAPI.Services
         
         public Product? GetById(int Id);
         
-        public Product? Update (int Id, string Name, decimal Price, string Size,string Photo, double Quantity);
+        public Product? Update (int Id, string Name, decimal Price, ProductSizeEnum Size,IFormFile Photo, double Quantity);
         
         public void Delete(int Id);
- 
     }
 }

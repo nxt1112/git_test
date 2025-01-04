@@ -4,6 +4,7 @@ using Microsoft.OpenApi.Extensions;
 using System.Runtime.CompilerServices;
 using YangiHayotAPI.Data;
 using YangiHayotAPI.DTOs;
+using YangiHayotAPI.Enums;
 using YangiHayotAPI.Models;
 using YangiHayotAPI.Services;
 
@@ -23,15 +24,23 @@ namespace YangiHayotAPI.Controllers
         }
         [HttpPost]
         [Route("")]
-        public IActionResult Create([FromBody] ProductCreateRequest newProduct)
+        public IActionResult Create([FromForm] ProductCreateRequest newProduct)
         {
             var checkproduct = this.productService.GetByName(newProduct.Name);
             if (checkproduct != null)
             {
                 return BadRequest("This product already exists!");
             }
-            int id = this.productService.Create(newProduct.Name, newProduct.Price, newProduct.Size, newProduct.Photo, newProduct.Quantity);
+            int id = this.productService.Create(newProduct.Name, newProduct.Price, newProduct.Size, newProduct.Photo.FileName, newProduct.Quantity);
+
+            FileStream fs = new FileStream("wwwroot/file1.jpg", FileMode.Create);
+
+            newProduct.Photo.CopyTo(fs);
+
+            fs.Dispose();
+            
             return Ok(id);
+
         }
 
         [HttpGet]
@@ -56,7 +65,7 @@ namespace YangiHayotAPI.Controllers
 
         [HttpPut]
         [Route("{id}")]
-        public IActionResult Update(int id, string Name, decimal Price, string Size, string Photo, double Quantity)
+        public IActionResult Update(int id, string Name, decimal Price, ProductSizeEnum Size, IFormFile Photo, double Quantity)
         {
             var product = this.productService.GetById(id);
             if (product == null)

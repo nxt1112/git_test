@@ -24,13 +24,13 @@ namespace YangiHayotAPI.Services
             return product;
         }
 
-        public int Create(string Name, decimal Price, ProductSizeEnum Size, string Photo, double Quantity)
+        public int Create(string Name, decimal Price, ProductSizeEnum Size, IFormFile Photo, double Quantity)
         {
             Product product = new Product();    
             product.Name = Name;    
             product.Price = Price;
-           // product.Size = Convert.ToString(Size);
-            product.Photo = Photo;  
+            product.Size = Convert.ToString(Size);
+            product.Photo = Photo.FileName;  
             product.Quantity = Quantity;
             _dataContext.Products.Add(product); 
             _dataContext.SaveChanges();
@@ -48,7 +48,7 @@ namespace YangiHayotAPI.Services
             return product;     
         }
 
-        public Product? Update(int Id, string Name, decimal Price, string Size, string Photo, double Quantity)
+        public Product? Update(int Id, string Name, decimal Price, ProductSizeEnum Size, IFormFile Photo, double Quantity)
         {
             var product= _dataContext.Products.FirstOrDefault(p => p.Id == Id);
             if (product == null) 
@@ -57,8 +57,8 @@ namespace YangiHayotAPI.Services
             }
             product.Name = Name;    
             product.Price = Price;  
-            product.Size = Size;    
-            product.Photo = Photo;  
+           // product.Size = Size;    
+            product.Photo = Photo.FileName;  
             product.Quantity = Quantity;    
             _dataContext.SaveChanges();
             return product;

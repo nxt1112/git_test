@@ -10,11 +10,12 @@ namespace YangiHayotAPI
         {
 
             //object hmacsha
-            using (HMACSHA3_512 hmac = new HMACSHA3_512())
-            {
-                passwordSalt = hmac.Key;
-                passwordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
-            }
+
+            HMACSHA3_512 hmac = new HMACSHA3_512();
+            passwordSalt = hmac.Key;
+            passwordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
+            hmac.Dispose();
+            
         }
         
         public static bool CheckPassword (string password, byte[] passwordSalt, byte[] passwordHash)

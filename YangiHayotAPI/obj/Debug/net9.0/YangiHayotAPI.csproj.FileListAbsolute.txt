@@ -124,3 +124,4 @@ C:\Users\Владелец\Desktop\vs2024\YangiHayotAPI\YangiHayotAPI\bin\Debug\n
 C:\Users\Владелец\Desktop\vs2024\YangiHayotAPI\YangiHayotAPI\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\Владелец\Desktop\vs2024\YangiHayotAPI\YangiHayotAPI\obj\Debug\net9.0\YangiHayotAPI.sourcelink.json
 C:\Users\Владелец\Desktop\vs2024\YangiHayotAPI\YangiHayotAPI\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
+C:\Users\Владелец\Desktop\vs2024\YangiHayotAPI\YangiHayotAPI\bin\Debug\net9.0\YangiHayotAPI.staticwebassets.runtime.json

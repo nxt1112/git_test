@@ -24,9 +24,29 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "newProduct",
-        "Type": "YangiHayotAPI.DTOs.ProductCreateRequest",
-        "IsRequired": true
+        "Name": "Name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Price",
+        "Type": "System.Decimal",
+        "IsRequired": false
+      },
+      {
+        "Name": "Size",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Photo",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "Quantity",
+        "Type": "System.Double",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -317,5 +337,15 @@
       }
     ],
     "EndpointName": "GetWeatherForecast"
+  },
+  {
+    "ContainingType": "YangiHayotAPI.Controllers.WeatherForecastController",
+    "Method": "Test",
+    "RelativePath": "WeatherForecast/test",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
   }
 ]

@@ -1,12 +1,20 @@
 {
   "Version": 1,
-  "Hash": "rh9iZ6WyRFRfw7d4N9rDxf1bSPfLV1qmwTZHmgsmCXY=",
+  "Hash": "8YuuW3I7bY2TQpXbIce5YxwccbqJFePSRuvjgWJ9ezo=",
   "Source": "YangiHayotAPI",
   "BasePath": "_content/YangiHayotAPI",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "YangiHayotAPI\\wwwroot",
+      "Source": "YangiHayotAPI",
+      "ContentRoot": "C:\\Users\\Владелец\\Desktop\\vs2024\\YangiHayotAPI\\YangiHayotAPI\\wwwroot\\",
+      "BasePath": "_content/YangiHayotAPI",
+      "Pattern": "**"
+    }
+  ],
   "Assets": [],
   "Endpoints": []
 }

@@ -15,7 +15,7 @@ namespace YangiHayotAPI.DTOs
         public decimal Price { get; set; }
         [StringLength(22)]
         public ProductSizeEnum Size { get; set; }
-        public string Photo { get; set; }= string.Empty;    
+        public IFormFile ? Photo { get; set; }
         [StringLength(35)]
         public double Quantity { get; set; }
     }
