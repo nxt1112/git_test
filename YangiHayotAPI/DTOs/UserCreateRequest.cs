@@ -21,8 +21,9 @@ namespace YangiHayotAPI.DTOs
         [EmailAddress]
         [Required]
         public string Email { get; set; } = string.Empty ;
-        
-        [StringLength(8)]
+
+        [MinLength (8)]
+        [MaxLength(10)]
         [Required]
         public string Password { get; set; } = string.Empty;    
 

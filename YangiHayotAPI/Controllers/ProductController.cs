@@ -31,9 +31,12 @@ namespace YangiHayotAPI.Controllers
             {
                 return BadRequest("This product already exists!");
             }
-            int id = this.productService.Create(newProduct.Name, newProduct.Price, newProduct.Size, newProduct.Photo.FileName, newProduct.Quantity);
+            int id = this.productService.Create(newProduct.Name, newProduct.Price, newProduct.Size, newProduct.Photo, newProduct.Quantity);
 
-            FileStream fs = new FileStream("wwwroot/file1.jpg", FileMode.Create);
+            
+
+
+            FileStream fs = new FileStream("wwwroot/" + newProduct.Photo.FileName, FileMode.Create);
 
             newProduct.Photo.CopyTo(fs);
 

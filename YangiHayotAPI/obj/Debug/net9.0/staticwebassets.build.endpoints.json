@@ -1,5 +1,252 @@
 {
   "Version": 1,
   "ManifestType": "Build",
-  "Endpoints": []
+  "Endpoints": [
+    {
+      "Route": "bmw.png",
+      "AssetFile": "bmw.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "89598"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"WHpS2OWJV9QfEm8/Ye86Xe6Y33L3z+CnGDX6Pw2Pmg0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 30 Jan 2025 16:32:04 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-WHpS2OWJV9QfEm8/Ye86Xe6Y33L3z+CnGDX6Pw2Pmg0="
+        }
+      ]
+    },
+    {
+      "Route": "bmw.svmmtsri61.png",
+      "AssetFile": "bmw.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "89598"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"WHpS2OWJV9QfEm8/Ye86Xe6Y33L3z+CnGDX6Pw2Pmg0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 30 Jan 2025 16:32:04 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "svmmtsri61"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-WHpS2OWJV9QfEm8/Ye86Xe6Y33L3z+CnGDX6Pw2Pmg0="
+        },
+        {
+          "Name": "label",
+          "Value": "bmw.png"
+        }
+      ]
+    },
+    {
+      "Route": "chevrole.oxrq14bd39.webp",
+      "AssetFile": "chevrole.webp",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "7754"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/webp"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"7DDNYw9kWfdln/FZsI65yiAJgjVBD3M3zra7/MzYXZQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 30 Jan 2025 16:32:48 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "oxrq14bd39"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-7DDNYw9kWfdln/FZsI65yiAJgjVBD3M3zra7/MzYXZQ="
+        },
+        {
+          "Name": "label",
+          "Value": "chevrole.webp"
+        }
+      ]
+    },
+    {
+      "Route": "chevrole.webp",
+      "AssetFile": "chevrole.webp",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "7754"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/webp"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"7DDNYw9kWfdln/FZsI65yiAJgjVBD3M3zra7/MzYXZQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 30 Jan 2025 16:32:48 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-7DDNYw9kWfdln/FZsI65yiAJgjVBD3M3zra7/MzYXZQ="
+        }
+      ]
+    },
+    {
+      "Route": "file1.jpg",
+      "AssetFile": "file1.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "12343"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"FApQEinN4DWgsKfRRch/JcOphVkxxWux+/BnjVc0eHw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 30 Jan 2025 16:30:36 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-FApQEinN4DWgsKfRRch/JcOphVkxxWux+/BnjVc0eHw="
+        }
+      ]
+    },
+    {
+      "Route": "file1.o5aqstx8sj.jpg",
+      "AssetFile": "file1.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "12343"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"FApQEinN4DWgsKfRRch/JcOphVkxxWux+/BnjVc0eHw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 30 Jan 2025 16:30:36 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "o5aqstx8sj"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-FApQEinN4DWgsKfRRch/JcOphVkxxWux+/BnjVc0eHw="
+        },
+        {
+          "Name": "label",
+          "Value": "file1.jpg"
+        }
+      ]
+    }
+  ]
 }

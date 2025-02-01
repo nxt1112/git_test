@@ -39,9 +39,9 @@ namespace YangiHayotAPI.Services
             return _dataContext.Users.ToList(); 
         }
 
-        public User? GetById(int Id) 
+        public User? GetById(int id) 
         {
-            var user = _dataContext.Users.FirstOrDefault(u => u.Id == Id);
+            var user = _dataContext.Users.FirstOrDefault(u => u.Id == id);
             return (user);
         } 
 

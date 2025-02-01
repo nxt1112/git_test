@@ -1,0 +1,3 @@
+wwwroot\bmw.png
+wwwroot\chevrole.webp
+wwwroot\file1.jpg

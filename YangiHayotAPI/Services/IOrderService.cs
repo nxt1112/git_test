@@ -4,14 +4,14 @@ namespace YangiHayotAPI.Services
 {
     public interface IOrderService
     {
-        public int Create(DateTime CreatedAt, int UserId, decimal Price);
-        
-        public List<Order> Index();
-        
-        public Order Show(int Id);
-        
-        public string Update(int Id, DateTime CreatedAt,int UserId, decimal Price);
-        
-        public void Delete(int Id);   
+        List<Order> GetOrdersList();
+
+        Order CreateNewOrder(decimal price, int userid);
+
+        Order? GetOneOrder(int id);
+
+        Order UpdateOrder(decimal price, Order order);
+
+        void DeleteOrder(Order order);
     }
 }
