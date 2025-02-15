@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Main Page</title>
+   <link rel="stylesheet" href="css/style.css"/>
+   <link rel="stylesheet" href="css/bootstrap.css"/>
+   <link rel="icon" href="favicon.png"/>
+   
+   
+</head>
+<body>
+   <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+      <a style="color: aliceblue;" class="navbar-brand active" href="index.html">Main Page</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item ">
+            <a style="color: aliceblue;" class="nav-link" href="product.html">Products</a>
+          </li>
+          <li class="nav-item ">
+            <a style="color: aliceblue;" class="nav-link" href="user.html">Users </a>
+          </li>
+          <li class="nav-item ">
+            <a style="color: aliceblue;" class="nav-link" href="orders.html">Orders</a>
+          </li>
+        </ul>
+       
+      </div>
+    </nav>
+
+    <div>
+      <ol></ol>
+    </div>
+
+
+   <script src="js/script.js">
+
+    
+    // getUser().then(users =>{
+    //    for(let i =0; i<users.length; i++)
+    //         {
+    //             let newItem= document.createElement("li");
+    //             newItem.innerHTML=`${users[i].firstName} ${users[i].lastName}`;
+
+    //             let myList=document.querySelector("ol");
+    //         myList.appendChild(newList);
+    //         } 
+      
+    // }).catch(error=>{
+    //   const msg = document.createElement("h3");
+    //   msg.innerText= "Users not found!";
+    //   let myBody= document.querySelector("body");
+    //   myBody.appendChild(msg);
+      
+    // });
+
+   </script>
+</body>
+</html>

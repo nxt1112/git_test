@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users</title>
+    <link rel="stylesheet" href="css/bootstrap.css"/>
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+        <a style="color: aliceblue;" class="navbar-brand" href="index.html">Main Page</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item ">
+              <a style="color: aliceblue;" class="nav-link" href="product.html">Products</a>
+            </li>
+            <li class="nav-item active">
+              <a style="color: aliceblue;" class="nav-link" href="user.html">Users </a>
+            </li>
+            <li class="nav-item ">
+                <a style="color: aliceblue;" class="nav-link" href="orders.html">Orders</a>
+              </li>
+          </ul>
+         
+        </div>
+      </nav>
+
+
+    <table class="table table-stripped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Role</th>
+                <th>Created Date</th>
+            </tr>
+        </thead>
+        <tbody id="users">
+
+        </tbody>
+    </table>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-3">
+                <form id="addNewUserForm">
+                    <div class="nb-3">
+                        <input type="text" name="firstName" id="fname" placeholder="First Name" class="form-control"/>
+                    </div>
+                    <div class="nb-3">
+                        <input type="text" name="lastName" id="lname" placeholder="Last Name" class="form-control"/>
+                    </div>
+                    <div class="nb-3">
+                        <input type="email" name="email" id="email" placeholder="Email" class="form-control"/>
+                    </div>
+                    <div class="nb-3">
+                        <input type="password" name="password" id="password" placeholder="Password" class="form-control"/>
+                    </div>
+                    <div class="nb-3">
+                        <input type="tel" name="phoneNumber" id="phone" placeholder="Phone Number" class="form-control"/>
+                    </div>
+                    <div class="nb-3">
+                        <select  id="roles" name="roleId" class="form-select"></select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add New User</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    
+    <script src="js/script.js">
+    </script>
+
+    <script>
+
+
+       
+    const myForm = document.getElementById("addNewUserForm");
+    myForm.addEventListener("submit", event =>{
+        event.preventDefault();
+
+        const data= new FormData(myForm);
+        addUser(data).then(responseData=>{
+        let newRow=document.createElement("tr");
+        newRow.innerHTML=
+        `
+            <td>${responseData.id}</td>
+            <td>${responseData.firstName}</td>
+            <td>${responseData.lastName}</td>
+            <td>${responseData.email}</td>
+            <td>${responseData.phoneNumber}</td>
+            <td>${responseData.roleId}</td>
+            <td>${responseData.createdAt}</td>
+        `;
+
+        let tbodyElement = document.getElementById("users");
+        tbodyElement.appendChild(newRow);
+        }).catch(error =>{
+        console.log(error);
+        return null;
+        });
+   });
+
+
+   getUsers()
+        .then(users =>
+        {
+            for(let i =0; i<users.length; i++)
+            {
+                let newRow= document.createElement("tr");
+                newRow.innerHTML=`
+                <td>${users[i].id}</td>
+                <td>${users[i].firstName}</td>
+                <td>${users[i].lastName}</td>
+                <td>${users[i].email}</td>
+                <td>${users[i].phoneNumber}</td>
+                <td class ="role-id">${users[i].roleId}</td>
+                <td>${users[i].createdAt}</td>
+                `;
+                let tbodyElement=document.getElementById("users");
+                tbodyElement.appendChild(newRow);
+            }   
+        test();  
+        
+            }).catch(error =>
+            {
+                console.log(error);
+            });
+
+
+function test()
+{
+    getRoles().then(responseData =>{
+    const myUserRoleIdElements = document.querySelectorAll(".role-id");
+    console.log(myUserRoleIdElements);
+    for(let index = 0; index<   myUserRoleIdElements.length; index++){
+        let role = responseData.find(role=>role.id== myUserRoleIdElements[index].innerText);
+        myUserRoleIdElements[index].innerText= role.name; 
+    }
+
+
+    const mySelect = document.querySelector("#roles");
+    for(let i = 0; i< responseData.length;i++)
+    {
+        const newOptElement =document.createElement("option");
+        newOptElement.innerText= responseData[i].name;
+        newOptElement.value= responseData[i].id;
+        mySelect.appendChild(newOptElement);
+    }
+   });
+}
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+       
+    
+
+
+
+
+    
+        
+
+
+
+
+
+    </script>
+</body>
+
+
+</html>

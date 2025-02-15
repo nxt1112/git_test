@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orders</title>
+    <link rel="stylesheet" href="css/bootstrap.css">    
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+        <a style="color: aliceblue;" class="navbar-brand" href="index.html">Main Page</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item ">
+              <a style="color: aliceblue;" class="nav-link" href="product.html">Products</a>
+            </li>
+            <li class="nav-item ">
+              <a style="color: aliceblue;" class="nav-link" href="user.html">Users </a>
+            </li>
+            <li class="nav-item active">
+                <a style="color: aliceblue;" class="nav-link" href="orders.html">Orders</a>
+              </li>
+          </ul>
+         
+        </div>
+      </nav>
+
+      <div class ="container">
+        <div class="row nb-5">
+          <table class="table table-stripped">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Created At</th>
+                <th>User Id</th>
+                <th>Total Sum</th>
+              </tr>
+            </thead>
+            <tbody id="orders">
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+
+      <div class="container">
+        <div class="row nb-5">
+            <div class="col-3">
+                <form id="addNewOrder">
+                    <div class="nb-5">
+                        <select  name="userId" id="uId" placeholder="User ID" class="form-select"></select>
+                    </div>
+                    <div class="nb-5">
+                        <input type="text" name="productIds" id="pIds" placeholder="Product Ids" class="form-control"/>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add New Order</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+<script>
+
+
+
+
+
+getOrders()
+.then(data=>{
+  for (let i = 0; i < data.length; i++) {
+    let newRow = document.createElement("tr");
+    let order = data[i];
+    newRow.innerHTML = `
+    <td>${order.id}</td>
+    <td>${order.createdAt}</td>
+    <td>${order.userId}</td>
+    <td>${order.totalSum}</td>
+    
+    `;
+    let tbodyElement=document.getElementById("orders");
+    tbodyElement.appendChild(newRow); 
+  }
+})
+
+
+//create new  order
+const orderAdddingForm = document.querySelector("form");
+orderAdddingForm.addEventListener("submit",event=>{
+  event.preventDefault();
+  const data = new FormData(orderAdddingForm);
+  fetch("https://localhost:7101/api/Order",{
+
+    method: "POST",
+    body:data
+  })
+  .then(response => response.json())
+  
+})
+
+getUsers()
+.then(result => { console.log(result)
+  // for (let index = 0; index < result.length; index++) {
+  //   let user = result[index];
+
+  //   let option = document.createElement("option");
+  //   option.innerHTML= `${user.firstName} ${user.lastName}`;
+  //   option.value= user.id;
+
+  //   let userSelect=  document.getElementById("users");
+  //   userSelect.appendChild(option);
+                
+ // }
+})
+.catch(error => console.log(error)); 
+
+
+
+
+
+
+
+      // getOrders()
+      //   .then(orders =>
+      //   {
+      //       for(let i =0; i<orders.length; i++)
+      //       {
+      //           let newRow= document.createElement("tr");
+      //           newRow.innerHTML=`
+      //           <td>${orders[i].id}</td>
+      //           <td>${orders[i].createdAt}</td>
+      //           <td>${orders[i].userId}</td>
+      //           `;
+      //           let tbodyElement=document.getElementById("orders");
+      //           tbodyElement.appendChild(newRow);
+      //       }   
+      //       }).catch(error =>
+      //       {
+      //           console.log(error);
+      //       });
+    </script>   
+    <script src="js/script.js">
+      
+    </script>   
+    
+</body>
+</html>

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+    <link  rel="stylesheet" href="css/bootstrap.css"
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+      <a style="color: aliceblue;" class="navbar-brand" href="index.html">Main Page</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a style="color: aliceblue;" class="nav-link" href="product.html">Products</a>
+          </li>
+          <li class="nav-item ">
+            <a style="color: aliceblue;" class="nav-link" href="user.html">Users </a>
+          </li>
+          <li class="nav-item ">
+            <a style="color: aliceblue;" class="nav-link" href="orders.html">Orders</a>
+          </li>
+        </ul>
+       
+      </div>
+    </nav>
+   <div class="container">
+        <div class="row nb-5">
+            <table class="table table-stripped">
+                <thead>
+                    <tr>
+                        <th>ID</th>   
+                        <th>Name</th>
+                        <th>Photo</th>
+                        <th>Price</th>
+                        <th>Size</th>
+                        <th>Quantity</th>
+                    </tr>
+                </thead>
+                <tbody id="products">
+
+                </tbody>
+            </table>
+        </div>
+
+        <div class="row">
+            <form id="mypform">
+                <div class="nb-3">
+                    <input type="text" name="name" placeholder="Name" class="form-control"/>
+                </div>
+                <div class="nb-3">
+                    <input type="file" name="photo" placeholder="Photo" class="form-control"/>
+                </div>
+                <div class="nb-3">
+                    <input type="number" name="price" placeholder="Price" class="form-control"/>
+                </div>
+                <div class="nb-3">
+                    <input type="number" name="size" placeholder="Size" class="form-control"/>
+                </div>
+                <div class="nb-3">
+                    <input type="number" name="quantity" placeholder="Quantity" class="form-control"/>
+                </div>
+                <button type="submit" class="btn btn-primary">Add New Product</button>
+            </form>
+        </div>
+    </div>
+    <script src="js/script.js">
+
+    </script>
+   
+
+    
+    <script>
+
+    //     getProducts().then(data => {                                 // json ga o'tkazilgan ma'lumotni data deb nomlab olinayapti!
+    //         let newRow = document.createElement("tr");  
+    //         newRow.innerHTML = `
+    //             <td>${data.id}</td>
+    //             <td>${data.name}</td>
+    //             <td>${data.price}</td>
+    //             <td>${data.size}</td>
+    //             <td>
+    //                 <a href="${"https://localhost:7101/api/Product" + data.photo}">${data.photo}</a>
+    //             </td>
+    //             <td>${data.quantity}</td>
+    //             `;
+    //         let tbodyElement = document.getElementById("products");
+    //         tbodyElement.appendChild(newRow);   
+    // })
+    // .catch(error=>{
+    //     console.log(error)
+    // });
+
+
+// Fetch products from API and display in products.html
+function getProducts() {
+    fetch('https://localhost:7101/api/Product')
+        .then(response => response.json())
+        .then(data => {
+            let tbodyElement = document.getElementById('products');
+            tbodyElement.innerHTML = '';
+            data.forEach(product => {
+                let newRow = document.createElement('tr');
+                newRow.innerHTML = `
+                    <td>${product.id}</td>
+                    <td>${product.name}</td>
+                    <td>${product.price}</td>
+                    <td>${product.size}</td>
+                    <td>
+                        <a href="${"https://localhost:7101/" + product.photo}">${product.photo}</a>
+                    </td>
+                    <td>${product.quantity}</td>
+                `;
+                tbodyElement.appendChild(newRow);
+            });
+        });
+}
+
+document.addEventListener('DOMContentLoaded', getProducts);
+
+// Handle form submission
+function submitForm(event) {
+    event.preventDefault();
+    let form = document.getElementById('mypform');
+    let formData = new FormData(form);
+    
+    fetch('https://localhost:7101/api/Product', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(() => {
+        getProducts(); // Refetch all products to ensure the latest data is displayed
+        form.reset(); // Clear the form after submission
+    });
+}
+
+document.getElementById('mypform').addEventListener('submit', submitForm);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //     const getProductForm = document.getElementById("products");
+        //     getProductForm.addEventListener("submit",event =>{
+        //     event.preventDefault();
+        //     const pdata = new FormData(getProductForm);
+
+            
+        //     getProducts().then(products =>{
+        //         for(let i =0; i<products.length;i++)
+        //         {
+        //             let newRow = document.createElement("tr")
+        //             newRow.innerHTML =
+        //             `
+        //             <td>${products[i].id}</td>
+        //             <td>${products[i].name}</td>
+        //             <td>
+        //                 <a href="${"https://localhost:7101/api/Product" + products.photo}">${products.photo}</a>
+        //             </td>
+        //             <td>${products[i].price}</td>
+        //             <td>${products[i].size}</td>
+        //             <td>${products[i].quantity}</td>
+        //             `;
+        //             let tbodyElement= document.getElementById("products");
+        //             tbodyElement.appendChild("newRow");
+                    
+        //         }
+        //     }).catch(error=>{
+        //         console.log(error);
+
+        //     })
+            
+        // });
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+//         getProducts()   ;
+
+//     const productAddForm = document.querySelector("form");
+//     productAddForm.addEventListener("submit", event => {
+//     event.preventDefault();
+
+//     const data = new FormData(productAddForm);
+
+//     fetch("https://localhost:7101/api/Product", {
+//         method: "Post",
+//         body: data
+//     })
+//     .then(response => response.json())              // serverdan kelgan ma'lumotni response deb pereminiga olayapti va responseni json ko'rinishga o'tgakazayapti! 
+//     .then(data => {                                 // json ga o'tkazilgan ma'lumotni data deb nomlab olinayapti!
+//         let newRow = document.createElement("tr");  
+//             newRow.innerHTML = `
+//             <td>${data.id}</td>
+//             <td>${data.name}</td>
+//             <td>${data.price}</td>
+//             <td>${data.size}</td>
+//             <td>
+//                 <a href="${"https://localhost:7101/api/Product" + data.photo}">${data.photo}</a>
+//             </td>
+//             <td>${data.quantity}</td>
+//             `;
+
+//             let tbodyElement = document.getElementById("products");
+//             tbodyElement.appendChild(newRow);   
+//     })
+//     .catch(error => console.log(error))
+// });
+
+// const url = "https://localhost:7101/api/Product"
+
+// async function getProducts() {
+
+//     const response = await fetch("https://localhost:7101/api/Product")
+//     const data = await response.json();
+//     console.log(data);
+// }
+
+// getProducts();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script> 
+</body>
+</html>
