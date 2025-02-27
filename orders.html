@@ -7,27 +7,10 @@
     <link rel="stylesheet" href="css/bootstrap.css">    
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
-        <a style="color: aliceblue;" class="navbar-brand" href="index.html">Main Page</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item ">
-              <a style="color: aliceblue;" class="nav-link" href="product.html">Products</a>
-            </li>
-            <li class="nav-item ">
-              <a style="color: aliceblue;" class="nav-link" href="user.html">Users </a>
-            </li>
-            <li class="nav-item active">
-                <a style="color: aliceblue;" class="nav-link" href="orders.html">Orders</a>
-              </li>
-          </ul>
-         
-        </div>
-      </nav>
+  <div id ="navbar-container">
+    
+  </div>
+
 
       <div class ="container">
         <div class="row nb-5">
@@ -53,12 +36,10 @@
             <div class="col-3">
                 <form id="addNewOrder">
                     <div class="nb-5">
-                        <select  name="userId" id="uId" placeholder="User ID" class="form-select"></select>
+                      <label for="userId">Pick an user</label>
+                        <select  name="userId" id="uId" class="form-select"></select>
                     </div>
-                    <div class="nb-5">
-                        <input type="text" name="productIds" id="pIds" placeholder="Product Ids" class="form-control"/>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Add New Order</button>
+                    <button type="submit" id="submit-btn" class="btn btn-primary">Add New Order</button>
                 </form>
             </div>
         </div>
@@ -66,14 +47,10 @@
 
 
 
-
-
+<script src="js/script.js">
+</script>   
 
 <script>
-
-
-
-
 
 getOrders()
 .then(data=>{
@@ -81,10 +58,10 @@ getOrders()
     let newRow = document.createElement("tr");
     let order = data[i];
     newRow.innerHTML = `
-    <td>${order.id}</td>
-    <td>${order.createdAt}</td>
-    <td>${order.userId}</td>
-    <td>${order.totalSum}</td>
+    <td>${data[i].id}</td>
+    <td>${data[i].createdAt}</td>
+    <td>${data[i].userId}</td>
+    <td>${data[i].totalSum}</td>
     
     `;
     let tbodyElement=document.getElementById("orders");
@@ -98,59 +75,67 @@ const orderAdddingForm = document.querySelector("form");
 orderAdddingForm.addEventListener("submit",event=>{
   event.preventDefault();
   const data = new FormData(orderAdddingForm);
+  let productIds = data.getAll("porductId");
+  data.delete("productId");
+  data.set("productIds", productIds);
+
+  
   fetch("https://localhost:7101/api/Order",{
 
     method: "POST",
-    body:data
+    body: {
+      'userId' : data.get("userId"),
+      'productIds' : [data.get("productIds")]
+    },
+    headers: {
+      'Content-Type': "application/json"
+    }
   })
   .then(response => response.json())
   
 })
 
 getUsers()
-.then(result => { console.log(result)
-  // for (let index = 0; index < result.length; index++) {
-  //   let user = result[index];
+.then(result => { 
+  for (let index = 0; index < result.length; index++) {
+    let user = result[index];
 
-  //   let option = document.createElement("option");
-  //   option.innerHTML= `${user.firstName} ${user.lastName}`;
-  //   option.value= user.id;
+    let option = document.createElement("option");
+    option.innerHTML= `${user.firstName} ${user.lastName}`;
+    option.value= user.id;
 
-  //   let userSelect=  document.getElementById("users");
-  //   userSelect.appendChild(option);
+    let userSelect=  document.getElementById("uId");
+    userSelect.appendChild(option);
                 
- // }
+ }
 })
 .catch(error => console.log(error)); 
 
+getProducts().then(products =>{
+  for (let i = 0; i < products.length; i++) {
+    const product = products[i];
+    let input = document.createElement("input");
+    input.type = "checkbox";
+    input.name= "productId";
+    input.className="form-checked-input";
+    input.value= product.id;
+    let label = document.createElement("label");
+    label.innerText = product.name; 
+    let div = document.createElement("div");
+    div.className = "nb-5 form-check";
+    div.appendChild(label);
+    div.appendChild(input);
+
+    let btn= document.getElementById("submit-btn");
+
+    document.querySelector("form").insertBefore(div,btn);
+  }
 
 
+})
 
 
-
-
-      // getOrders()
-      //   .then(orders =>
-      //   {
-      //       for(let i =0; i<orders.length; i++)
-      //       {
-      //           let newRow= document.createElement("tr");
-      //           newRow.innerHTML=`
-      //           <td>${orders[i].id}</td>
-      //           <td>${orders[i].createdAt}</td>
-      //           <td>${orders[i].userId}</td>
-      //           `;
-      //           let tbodyElement=document.getElementById("orders");
-      //           tbodyElement.appendChild(newRow);
-      //       }   
-      //       }).catch(error =>
-      //       {
-      //           console.log(error);
-      //       });
-    </script>   
-    <script src="js/script.js">
-      
-    </script>   
+</script>   
     
 </body>
 </html>

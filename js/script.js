@@ -1,3 +1,7 @@
+const domain = "https://localhost:7101/"; 
+
+
+
 //  async function getUsers()
 // {
 //     const response = await fetch("https://localhost:7101/api/User");
@@ -6,7 +10,7 @@
 //         return response.json();
 //     }
 //     if (response.status == 404)
-//     {
+//     {    
 //         console.log("Page not found!");
 //         return null;
 //     }
@@ -116,7 +120,7 @@ async function getRoles()
 async function getProducts() 
 {
     const response= await fetch("https://localhost:7101/api/Product")    
-    console.log(response);
+    console.log(response)
     if(response.ok){
         return response.json();
     }

@@ -7,27 +7,20 @@
     <link  rel="stylesheet" href="css/bootstrap.css"
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
-      <a style="color: aliceblue;" class="navbar-brand" href="index.html">Main Page</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a style="color: aliceblue;" class="nav-link" href="product.html">Products</a>
-          </li>
-          <li class="nav-item ">
-            <a style="color: aliceblue;" class="nav-link" href="user.html">Users </a>
-          </li>
-          <li class="nav-item ">
-            <a style="color: aliceblue;" class="nav-link" href="orders.html">Orders</a>
-          </li>
-        </ul>
-       
-      </div>
-    </nav>
+    <div id="navbar-container"></div>
+
+    <h1>Products Page</h1>
+    <p>List of products will be displayed here.</p>
+
+    <script>
+        fetch("navbar.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("navbar-container").innerHTML = data;
+            })
+            .catch(error => console.error("Error loading navbar:", error));
+    </script>
+ 
    <div class="container">
         <div class="row nb-5">
             <table class="table table-stripped">
